@@ -16,12 +16,7 @@ interface MagneticButtonOwnProps {
 }
 
 type MagneticButtonProps = MagneticButtonOwnProps &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof MagneticButtonOwnProps>;
-
-const variantClasses: Record<MagneticVariant, string> = {
-  solid: 'px-6 py-3 rounded-lg font-mono text-sm uppercase tracking-wide',
-  chip: 'px-3 py-1.5 rounded-full font-mono text-xs',
-};
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof MagneticButtonOwnProps>;
 
 export const MagneticButton = ({
   children,
