@@ -1,39 +1,46 @@
 import './App.css'
-import { SmoothCursor } from './components/AdvancedCursor'
-import { MagneticButton } from './components/MagneticButton'
-import MotionBackground from './components/MotionBackground'
+import { SmoothCursor } from './components/Animation/AdvancedCursor'
+import MotionBackground from './components/Animation/MotionBackground'
+import Navbar from './components/customComponents/Navbar'
+import SwitchLang from './components/customComponents/SwitchLang'
+import About from './sections/About'
+import Contact from './sections/Contact'
+import Footer from './sections/Footer'
+import Hero from './sections/Hero'
+import Projects from './sections/Projects'
+import Skills from './sections/Skills'
 
 function App() {
 
   return (
     <>
-      <div style={{
-      height: '100vh',
-      display: 'flex',
-      gap: '20px',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#0f172a',
-      direction: 'rtl'
-    }}>
-      <MotionBackground/>
+      
+      <Navbar/>
+      {/* hero section */}
+      <Hero/>
+
+      {/* hero section */}
+      <About/>
+
+      {/* projects section */}
+      <Projects/>
+
+      {/* skills section */}
+      <Skills/>
+
+      {/* contact section */}
+      <Contact/>
+
+      {/* footer section */}
+      <Footer/>
+
       {/* 1. استدعاء المؤشر في الصفحة */}
-      <SmoothCursor color="orange" />
+      <SmoothCursor color="#DC143C" />
 
-      {/* 2. استدعاء الزرار الأول */}
-      <MagneticButton onClick={() => alert('تم الضغط!')}>
-        اشترك الآن 🚀
-      </MagneticButton>
-
-      {/* 3. استدعاء زرار تاني بألوان مختلفة */}
-      <MagneticButton 
-        buttonColor="#ec4899" 
-        fillColor="#db2777" 
-        onClick={() => console.log('زر أخر')}
-      >
-        تواصل معنا ✨
-      </MagneticButton>
-    </div>
+      {/* get animated bg */}
+      <MotionBackground/>
+      {/* change language btn */}
+      <SwitchLang/>
     </>
   )
 }
