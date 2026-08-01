@@ -1,16 +1,15 @@
 import { motion } from "motion/react";
 
-// 1. إنشاء بيانات الـ 8 كور بخصائص عشوائية
 const ORBS = Array.from({ length: 5 }, (_, i) => ({
   id: i,
-  size: 180 + (i % 4) * 60, // أحجام متنوعة لكور الإضاءة
+  size: 180 + (i % 4) * 60,
   color:
     i % 3 === 0
-      ? "rgba(255, 61, 0, 0.5)"   // برتقالي ناري
+      ? "rgba(220, 20, 40, 0.5)"
       : i % 3 === 1
-      ? "rgba(255, 120, 51, 0.45)" // برتقالي فاتح
-      : "rgba(234, 88, 12, 0.35)",  // دافي
-  duration: 8 + (i % 5) * 3, // سرعات مختلفة (من 8 لـ 20 ثانية) عشان الحركة تكون هادية
+      ? "rgba(220, 40, 80, 0.45)"
+      : "rgba(234, 35, 20, 0.35)", 
+  duration: 8 + (i % 5) * 3,
 }));
 
 export default function RandomFloatingBackground() {
@@ -25,15 +24,13 @@ export default function RandomFloatingBackground() {
             height: orb.size,
             backgroundColor: orb.color,
           }}
-          // ⭐️ هنا العشوائية الكاملة في الحركة
           animate={{
-            // تتحرك في الشاشة أفقياً ورأسياً بين أماكن عشوائية بالنسبة لمركز الشاشة
             x: [
               `${(Math.sin(orb.id + 1) * 35)}vw`,
               `${(Math.cos(orb.id + 2) * -30)}vw`,
               `${(Math.sin(orb.id + 3) * -40)}vw`,
               `${(Math.cos(orb.id + 4) * 35)}vw`,
-              `${(Math.sin(orb.id + 1) * 35)}vw`, // العودة لنقطة البداية لسلاسة التكرار
+              `${(Math.sin(orb.id + 1) * 35)}vw`,
             ],
             y: [
               `${(Math.cos(orb.id + 1) * 35)}vh`,
@@ -42,7 +39,6 @@ export default function RandomFloatingBackground() {
               `${(Math.sin(orb.id + 4) * -35)}vh`,
               `${(Math.cos(orb.id + 1) * 35)}vh`,
             ],
-            // تكبر وتصغر بشكل عشوائي أثناء الطيران
             scale: [0.5, 0.6, 0.4, 0.8, 0.5],
           }}
           transition={{

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'motion/react';
 
-export const SmoothCursor = ({ defaultColor = 'rgba(234, 88, 12, 0.35)', size = 32, color }: { defaultColor?: string; size?: number; color?: string }) => {
+export const SmoothCursor = ({ defaultColor = '#FF3131', size = 32, color }: { defaultColor?: string; size?: number; color?: string }) => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // حالة للتحكم في لون المؤشر الحالي وحالة الهوفر
   const [cursorColor, setCursorColor] = useState(color ?? defaultColor);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,16 +16,21 @@ export const SmoothCursor = ({ defaultColor = 'rgba(234, 88, 12, 0.35)', size = 
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
 
-      // البحث عن أقرب عنصر عليه الخصائص المخصصة
-      const target = e.target.closest('[data-cursor-color]');
+      const colorTarget = e.target.closest('[data-cursor-color]');
 
-      if (target) {
-        // قراءة اللون المكتوب في data-cursor-color
-        const targetColor = target.getAttribute('data-cursor-color');
+      const hoverTarget = e.target.closest('[data-cursor]');
+
+
+
+      if (colorTarget) {
+        const targetColor = colorTarget.getAttribute('data-cursor-color');
         setCursorColor(targetColor ?? color ?? defaultColor);
+        
+      }
+
+      if(hoverTarget){
         setIsHovered(true);
-      } else {
-        // الرجوع للون الافتراضي عند الخروج
+      }else{
         setIsHovered(false);
       }
     };
@@ -37,8 +41,7 @@ export const SmoothCursor = ({ defaultColor = 'rgba(234, 88, 12, 0.35)', size = 
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-50 rounded-full"
-      // ⭐️ الحركة والتفاعل مع تغيير اللون والأنيميشن
+      className="hidden md:block fixed top-0 left-0 pointer-events-none z-9000 rounded-full"
       animate={{
         scale: isHovered ? 0 : 1,
       }}

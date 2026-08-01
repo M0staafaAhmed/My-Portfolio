@@ -4,3 +4,21 @@
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
+
+*{
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) and (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
+@theme {
+    --color-primary : #dc143c;
+    --color-secondary : #ff6b6b;
+    --color-tertiary : #007d7d;
+    --color-neutral : #8b7171;
+
+}
