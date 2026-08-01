@@ -11,7 +11,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative z-10 py-20">
+        <section id="contact" className="relative z-10 bg-black py-20 overflow-hidden">
             {/* توهج خلفي */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-primary blur-[140px] opacity-[0.07] pointer-events-none" />
 

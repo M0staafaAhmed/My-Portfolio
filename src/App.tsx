@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './App.css'
 import { SmoothCursor } from './components/Animation/AdvancedCursor'
 import MotionBackground from './components/Animation/MotionBackground'
@@ -12,35 +13,44 @@ import Skills from './sections/Skills'
 
 function App() {
 
+
+  useEffect(() => {
+    document.querySelectorAll('*').forEach((el) => {
+      if (el.scrollWidth > document.documentElement.clientWidth) {
+        console.log(el, el.scrollWidth, document.documentElement.clientWidth);
+      }
+    });
+  }, [])
+
   return (
     <>
-      
-      <Navbar/>
+
+      <Navbar />
       {/* hero section */}
-      <Hero/>
+      <Hero />
 
       {/* hero section */}
-      <About/>
+      <About />
 
       {/* projects section */}
-      <Projects/>
+      <Projects />
 
       {/* skills section */}
-      <Skills/>
+      <Skills />
 
       {/* contact section */}
-      <Contact/>
+      <Contact />
 
       {/* footer section */}
-      <Footer/>
+      <Footer />
 
       {/* 1. استدعاء المؤشر في الصفحة */}
       <SmoothCursor color="#DC143C" />
 
       {/* get animated bg */}
-      <MotionBackground/>
+      <MotionBackground />
       {/* change language btn */}
-      <SwitchLang/>
+      <SwitchLang />
     </>
   )
 }
