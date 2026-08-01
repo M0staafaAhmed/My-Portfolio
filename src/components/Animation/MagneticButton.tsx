@@ -9,12 +9,15 @@ interface MagneticButtonOwnProps {
   className?: string;
   buttonColor?: string;
   fillColor?: string;
-  variant?: MagneticVariant;
+  variant?: any; // 💡 يسمح بأي variant
+  size?: any;    // 💡 يسمح بأي size
+  style?: any;   // 💡 يحل مشكلة تعارض الـ style كـ Function أو Object
   as?: MagneticAs;
   href?: string;
-  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
+// 1. استبدال HTMLAttributes بـ ButtonHTMLAttributes
 type MagneticButtonProps = MagneticButtonOwnProps &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof MagneticButtonOwnProps>;
 

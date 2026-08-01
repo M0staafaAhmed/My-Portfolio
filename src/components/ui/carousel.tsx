@@ -3,7 +3,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
 
-import { cn } from "../../lib/utils"; 
+import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import { MagneticButton } from "../Animation/MagneticButton"
@@ -181,8 +181,7 @@ function CarouselPrevious({
   return (
     <MagneticButton
       data-slot="carousel-previous"
-      variant={variant}
-      size={size}
+      variant={variant as any}
       className={cn(
         "rounded-full",
         className
@@ -203,13 +202,12 @@ function CarouselNext({
   size = "icon-sm",
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const {  scrollNext, canScrollNext } = useCarousel()
+  const { scrollNext, canScrollNext } = useCarousel()
 
   return (
     <MagneticButton
       data-slot="carousel-next"
-      variant={variant}
-      size={size}
+      variant={variant as any}
       className={cn(
         "rounded-full",
         className
