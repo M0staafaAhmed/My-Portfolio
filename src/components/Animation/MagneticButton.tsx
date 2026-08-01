@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 
-type MagneticVariant = 'solid' | 'chip';
 type MagneticAs = 'button' | 'a' | 'span';
 
 interface MagneticButtonOwnProps {
