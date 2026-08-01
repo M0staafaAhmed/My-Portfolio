@@ -57,7 +57,7 @@ export default function Navbar() {
                     <MagneticButton
                         data-cursor-color={"#dc143c"}
                         data-cursor="hover"
-                        className="hidden md:block px-5 py-2 text-sm font-semibold text-white rounded-4xl border border-primary bg-primary/10 transition-all duration-300"
+                        className="hidden! md:block px-5 py-2 text-sm font-semibold text-white rounded-4xl border border-primary bg-primary/10 transition-all duration-300"
                         title="dowload Cv"
                         onClick={handleDownloadCv}
                     >
