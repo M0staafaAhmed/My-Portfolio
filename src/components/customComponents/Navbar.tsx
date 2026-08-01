@@ -25,8 +25,8 @@ export default function Navbar() {
     }
     return (
         <>
-            <div className="fixed inset-0 z-51 h-fit pt-4 px-3 max-w-4xl mx-auto">
-                <nav className="w-full mx-auto mt-6 flex items-center justify-between px-6 py-3 rounded-4xl border border-primary/30 bg-neutral/5 backdrop-blur-xl shadow-[0_0_25px_-5px_var(--color-primary)]">
+            <div className="fixed inset-0 z-51 h-fit pt-4 px-3 container mx-auto">
+                <nav className="md:max-w-4xl mx-auto mt-6 flex items-center justify-between px-6 py-3 rounded-4xl border border-primary/30 bg-neutral/5 backdrop-blur-xl shadow-[0_0_25px_-5px_var(--color-primary)]">
 
                     {/* Logo */}
                     <a href="#hero" className="text-lg font-bold tracking-tight text-white" data-cursor="hover" data-cursor-color={"#fff"}>
