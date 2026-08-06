@@ -61,7 +61,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative z-10 bg-black py-20 overflow-hidden">
+        <section id="contact" className="relative z-10 py-20 overflow-hidden">
             {/* توهج خلفي */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-primary blur-[140px] opacity-[0.07] pointer-events-none" />
 
@@ -131,7 +131,7 @@ export default function Contact() {
                                 {/* الاسم */}
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        identifier
+                                        {t('nameInput', 'الاسم')}
                                     </label>
                                     <input
                                         name="name"
@@ -145,7 +145,7 @@ export default function Contact() {
                                 {/* الايميل */}
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        email
+                                        {t('email')}
                                     </label>
                                     <input
                                         name="email"
@@ -225,7 +225,7 @@ export default function Contact() {
                                 {/* تفاصيل المشروع */}
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        project_details
+                                        {t('details')}
                                     </label>
                                     <textarea
                                         name="project_details"
@@ -241,7 +241,7 @@ export default function Contact() {
                                     disabled={quickStatus === 'sending'}
                                     className="w-full mt-2"
                                 >
-                                    {quickStatus === 'sending' ? 'transmitting...' : `${t('send')} →`}
+                                    {quickStatus === 'sending' ? t('transmitting') : `${t('send')} →`}
                                 </MagneticButton>
 
                                 {statusText[quickStatus as keyof typeof statusText] && (
@@ -274,7 +274,7 @@ export default function Contact() {
                             <form className="space-y-4" onSubmit={handleGeneralSubmit}>
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        identifier
+                                        {t('nameInput')}
                                     </label>
                                     <input
                                         name="name"
@@ -286,7 +286,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        email
+                                        {t('email')}
                                     </label>
                                     <input
                                         name="email"
@@ -298,7 +298,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        message
+                                        {t('message')}
                                     </label>
                                     <textarea
                                         name="message"
@@ -314,7 +314,7 @@ export default function Contact() {
                                     disabled={generalStatus === 'sending'}
                                     className="w-full mt-2"
                                 >
-                                    {generalStatus === 'sending' ? 'transmitting...' : 'send_transmission →'}
+                                    {generalStatus === 'sending' ? t('transmitting') : `${t('send')} →`}
                                 </MagneticButton>
 
                                 {statusText[generalStatus as keyof typeof statusText] && (
