@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { MagneticButton } from '../components/Animation/MagneticButton';
 
-const PROJECT_TYPES = ['SaaS Platform', 'E-Commerce', 'Landing Page', 'Full-Stack App'];
+const PROJECT_TYPES = ['SaaS Platform', 'E-Commerce', 'Landing Page', 'Other'];
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
 export default function Contact() {
