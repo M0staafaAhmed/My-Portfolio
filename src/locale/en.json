@@ -3,10 +3,13 @@
         "welcome": "Welcome to our website",
         "description": "This is a bilingual React app.",
         "resume":"Resume",
+        "home":"Home",
         "about":"About",
         "projects":"Projects",
         "contact":"Contact",
         "skills":"Skills",
+        "navigation":"Navigation",
+        "connect":"connect",
         "hello":"Hello",
         "im":"I'm",
         "name":"Mustafa Ahmed",
@@ -17,13 +20,19 @@
         "desc2":"Outside of work, I like experimenting with new tools and technologies before they go mainstream, and every project is a chance to fix something I felt was missing in the last one.",
         "whoami":"whoami",
         "selectedProjects":"Selected Projects",
+        "allRightsReserved":"All Rights Reserved",
         "freshCartDesc":"An e-commerce platform built with Next.js, integrating with an external REST API to display real products. Fixed cart sync issues using revalidateTag and router.refresh(), and fully customized the toast notification system.",
         "safeSpaceDesc":"A full-stack mental health platform built from scratch. Frontend: React, TypeScript, Redux Toolkit, Tailwind. Backend (built solo): Node.js and Express with MySQL, JWT auth, and a Groq AI chatbot with conversation memory and distress-keyword detection.",
         "adasaDesc":"A platform for sharing photography photos and articles. Built with React and React Router for page navigation, styled with Bootstrap 5 for a responsive layout, with a clean multi-page component structure.",
         "vibleyDesc":"A social media platform for sharing videos and posts between users. Built the entire frontend with React 19, focusing on smooth interaction and strong performance with continuously updating content.",
         "eliteHomesDesc":"A real estate website built with HTML, CSS, and vanilla JavaScript, featuring advanced search filters (property type, price, bedrooms), a featured-properties carousel, and an interactive FAQ. All logic handled in plain JS, no libraries.",
         "gameArenaDesc":"A landing site for a gaming/esports platform built with HTML and Bootstrap, featuring a games carousel, team showcase, and contact form. Fully responsive using the grid system and prebuilt components, no JS framework involved.",
-        "nutriPlanDesc":"A nutrition planning app built with vanilla JavaScript, no frameworks involved. Features a barcode scanner pulling product data from an external database, daily meal logging, and weekly calorie/macro breakdowns."
+        "nutriPlanDesc":"A nutrition planning app built with vanilla JavaScript, no frameworks involved. Features a barcode scanner pulling product data from an external database, daily meal logging, and weekly calorie/macro breakdowns.",
+        "quickProjectTitle":"Quick Project",
+        "quickProjectDesc":"You have an idea for a project and want to see it come to life.",
+        "projectType":"Project Type",
+        "projectBudjet":"Project Budget",
+        "send":"initialize_request"
 
 
     }

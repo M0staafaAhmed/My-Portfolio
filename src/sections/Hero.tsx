@@ -88,6 +88,7 @@ export default function Hero() {
                         data-cursor-color={primaryColor}
                         data-cursor="hover"
                         href='#about'
+                        title='scroll down'
                     >
                         <FaArrowDown />
                     </MagneticButton>
