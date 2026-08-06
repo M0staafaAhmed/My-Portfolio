@@ -14,13 +14,7 @@ import Skills from './sections/Skills'
 function App() {
 
 
-  useEffect(() => {
-    document.querySelectorAll('*').forEach((el) => {
-      if (el.scrollWidth > document.documentElement.clientWidth) {
-        console.log(el, el.scrollWidth, document.documentElement.clientWidth);
-      }
-    });
-  }, [])
+  
 
   return (
     <>

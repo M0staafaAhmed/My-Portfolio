@@ -6,7 +6,7 @@ export default function About() {
     const { t } = useTranslation();
     return (
         <>
-            <section id="about" className="relative z-10 bg-slate-950 py-20">
+            <section id="about" className="relative z-10 bg-black py-20">
                 <motion.div
                     className="text-center mb-16"
                     initial={{

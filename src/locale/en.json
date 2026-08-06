@@ -32,7 +32,12 @@
         "quickProjectDesc":"You have an idea for a project and want to see it come to life.",
         "projectType":"Project Type",
         "projectBudjet":"Project Budget",
-        "send":"initialize_request"
+        "send":"initialize_request",
+        "email":"Email",
+        "message":"Message",
+        "nameInput":"Name",
+        "details":"Details",
+        "transmitting":"transmitting..."
 
 
     }
