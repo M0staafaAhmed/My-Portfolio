@@ -16,7 +16,7 @@ export default function MobileNavbar() {
     const [open, setOpen] = useState(false)
     return (
         <>
-            <button className="md:hidden text-white cursor-pointer" onClick={() => setOpen(!open)}>
+            <button className="md:hidden text-white cursor-pointer" onClick={() => setOpen(!open)} title='open mobile menu'>
                 <div className="w-8 h-6 space-y-1">
                     <div className={`w-full h-1 bg-white rounded-2xl transition-all duration-800 ${open ? 'rotate-45 translate-y-2' : ''}`}></div>
                     <div className={`w-full h-1 bg-white rounded-2xl mt-1 transition-all duration-800 ${open ? 'opacity-0' : 'opacity-100'}`}></div>
