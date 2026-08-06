@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import './App.css'
 import { SmoothCursor } from './components/Animation/AdvancedCursor'
 import MotionBackground from './components/Animation/MotionBackground'
