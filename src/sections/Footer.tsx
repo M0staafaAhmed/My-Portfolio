@@ -11,8 +11,10 @@ const navLinks = [
 
 const socials = [
     { label: 'github', href: 'https://github.com/M0staafaAhmed' },
-    { label: 'linkedin', href: 'https://linkedin.com/in/your-profile' },
-    { label: 'email', href: 'mailto:you@example.com' },
+    { label: 'linkedin', href: 'https://linkedin.com/in/m0sstafaahmed' },
+    { label: 'email', href: 'mailto:aldhb176@gmail.com' },
+    { label: 'whatsapp', href: 'https://api.whatsapp.com/send/?phone=01229757587' },
+
 ];
 
 export default function Footer() {
@@ -53,8 +55,7 @@ export default function Footer() {
                         </a>
                         <p className="text-white/40 text-sm leading-6 max-w-xs">
                             {t(
-                                'footerTagline',
-                                'مطور فرونت اند بحول الأفكار لواجهات حقيقية تحس إنها حية.'
+                                "desc1"
                             )}
                         </p>
                     </div>
@@ -62,7 +63,7 @@ export default function Footer() {
                     {/* روابط التنقل */}
                     <div>
                         <span className="block font-mono text-[10px] uppercase tracking-[0.3em] text-primary mb-4">
-                            // navigation
+                            // {t('navigation')}
                         </span>
                         <ul className="space-y-3">
                             {navLinks.map((link) => (
@@ -86,7 +87,7 @@ export default function Footer() {
                     {/* السوشيال / التواصل */}
                     <div>
                         <span className="block font-mono text-[10px] uppercase tracking-[0.3em] text-primary mb-4">
-                            // connect
+                            // {t('connect')    }
                         </span>
                         <ul className="space-y-3">
                             {socials.map((social) => (

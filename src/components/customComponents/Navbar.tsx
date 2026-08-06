@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { MagneticButton } from "../Animation/MagneticButton";
 import { useScrollSpy } from "../../hooks/useScrollSpy";
+import MobileNavbar from "./MobileNavbar";
 
 
 const navItems = [
@@ -44,7 +45,7 @@ export default function Navbar() {
                                         data-cursor="hover"
                                         data-cursor-color={"#fff"} 
                                         href={`#${item.id}`}
-                                        className={`relative hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:inset-s-0 after:-bottom-1 after:h-[1.5px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full ${isActive ? "after:w-full text-white" : "w-0 text-neutral/80"}`}>
+                                        className={`relative hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:inset-s-0 after:-bottom-1 after:h-[1.5px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full ${isActive ? "after:w-full text-white" : "w-0 text-white/50"}`}>
                                         {t(item.id)}
                                     </a>
                                 </li>
@@ -65,11 +66,7 @@ export default function Navbar() {
                     </MagneticButton>
 
                     {/* Mobile toggle */}
-                    <button className="md:hidden text-white">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+                    <MobileNavbar />
                 </nav>
             </div>
         </>

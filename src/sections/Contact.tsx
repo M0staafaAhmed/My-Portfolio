@@ -1,13 +1,63 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { MagneticButton } from '../components/Animation/MagneticButton';
 
+const PROJECT_TYPES = ['SaaS Platform', 'E-Commerce', 'Landing Page', 'Full-Stack App'];
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+
 export default function Contact() {
     const { t } = useTranslation();
+    const [projectType, setProjectType] = useState(PROJECT_TYPES[0]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const [quickStatus, setQuickStatus] = useState('idle'); // idle | sending | success | error
+    const [generalStatus, setGeneralStatus] = useState('idle');
+
+    const sendToWeb3Forms = async (formEl : HTMLFormElement, extraFields = {}) => {
+        const formData = new FormData(formEl);
+        formData.append('access_key', WEB3FORMS_KEY);
+        Object.entries(extraFields).forEach(([key, value]) => {
+            formData.append(key, value as string);
+        });
+
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData,
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message || 'Submission failed');
+    };
+
+    const handleQuickSubmit = async (e : any) => {
         e.preventDefault();
-        // اربطها بالـ backend/service بتاعك
+        setQuickStatus('sending');
+        try {
+            await sendToWeb3Forms(e.target, { subject: 'New Quick Project Inquiry' });
+            setQuickStatus('success');
+            e.target.reset();
+            setProjectType(PROJECT_TYPES[0]);
+        } catch {
+            setQuickStatus('error');
+        }
+    };
+
+    const handleGeneralSubmit = async (e : any) => {
+        e.preventDefault();
+        setGeneralStatus('sending');
+        try {
+            await sendToWeb3Forms(e.target, { subject: 'New General Contact Message' });
+            setGeneralStatus('success');
+            e.target.reset();
+        } catch {
+            setGeneralStatus('error');
+        }
+    };
+
+    const statusText = {
+        idle: null,
+        sending: null,
+        success: 'message_sent ✓',
+        error: 'transmission_failed — try again',
     };
 
     return (
@@ -26,14 +76,14 @@ export default function Contact() {
                     <span className="text-white">{'<'}</span>
                     {t('contact')}
                     <span className="text-white">{'>'}</span>
-                </h2> 
+                </h2>
             </motion.div>
 
             <div className="container mx-auto px-3 relative z-10">
                 <motion.div
                     className="relative max-w-5xl mx-auto bg-[#0A0A0A] border border-white/10"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: false, amount: 0.15 }}
                     transition={{ duration: 1, ease: 'easeIn' }}
                 >
@@ -44,7 +94,7 @@ export default function Contact() {
                     <span className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary z-20" />
 
                     {/* شريط التيرمنال العلوي */}
-                    <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <div dir='ltr' className="flex items-center justify-between px-5 py-3 border-b border-white/10">
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                             <span className="text-[11px] font-mono text-white/50 uppercase tracking-wider">
@@ -71,41 +121,138 @@ export default function Contact() {
                                 </span>
                             </div>
                             <h3 className="text-white font-bold uppercase text-lg mb-1">
-                                {t('quickProjectTitle', 'مشروع فوري')}
+                                {t('quickProjectTitle')}
                             </h3>
                             <p className="text-white/40 text-xs mb-6">
-                                {t('quickProjectDesc', 'عندك مشروع جاهز ومحتاج تبدأ فورًا؟')}
+                                {t('quickProjectDesc')}
                             </p>
 
-                            <form className="space-y-4" onSubmit={handleSubmit}>
+                            <form className="space-y-5" onSubmit={handleQuickSubmit}>
+                                {/* الاسم */}
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        project_type
+                                        identifier
                                     </label>
-                                    <select className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors">
-                                        <option className='text-black'>SaaS Platform</option>
-                                        <option className='text-black'>E-Commerce</option>
-                                        <option className='text-black'>Landing Page</option>
-                                        <option className='text-black'>Full-Stack App</option>
-                                    </select>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        required
+                                        placeholder="your_name"
+                                        className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors placeholder:text-white/20"
+                                    />
                                 </div>
+
+                                {/* الايميل */}
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
-                                        budget_range
+                                        email
                                     </label>
-                                    <select className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors">
-                                        <option className='text-black'>$500 - $1,500</option>
-                                        <option className='text-black'>$1,500 - $5,000</option>
-                                        <option className='text-black'>$5,000+</option>
-                                    </select>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        required
+                                        placeholder="you@domain.com"
+                                        className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors placeholder:text-white/20"
+                                    />
                                 </div>
+
+                                {/* نوع المشروع - راديو بشكل chips */}
+                                <div>
+                                    <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-3">
+                                        {t('projectType')}
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {PROJECT_TYPES.map((option) => {
+                                            const isSelected = projectType === option;
+                                            return (
+                                                <label
+                                                    key={option}
+                                                    data-cursor="hover"
+                                                    data-cursor-color="#DC143C"
+                                                    className={`relative flex items-center gap-2 px-3 py-2.5 border cursor-pointer transition-all duration-300 ${
+                                                        isSelected
+                                                            ? 'border-primary bg-primary/10 shadow-[0_0_12px_-2px_var(--color-primary)]'
+                                                            : 'border-white/10 hover:border-white/25'
+                                                    }`}
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        name="project_type"
+                                                        value={option}
+                                                        checked={isSelected}
+                                                        onChange={() => setProjectType(option)}
+                                                        className="sr-only"
+                                                    />
+                                                    <span
+                                                        className={`shrink-0 w-3 h-3 rounded-full border flex items-center justify-center transition-colors ${
+                                                            isSelected ? 'border-primary' : 'border-white/30'
+                                                        }`}
+                                                    >
+                                                        {isSelected && (
+                                                            <motion.span
+                                                                layoutId="project-type-dot"
+                                                                className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_var(--color-primary)]"
+                                                            />
+                                                        )}
+                                                    </span>
+                                                    <span
+                                                        className={`font-mono text-[11px] leading-tight ${
+                                                            isSelected ? 'text-white' : 'text-white/50'
+                                                        }`}
+                                                    >
+                                                        {option}
+                                                    </span>
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+
+                                {/* الميزانية - إنبت عادي */}
+                                <div>
+                                    <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
+                                        {t('projectBudjet')}
+                                    </label>
+                                    <input
+                                        name="budget"
+                                        type="text"
+                                        inputMode="numeric"
+                                        placeholder="e.g. $1,500"
+                                        className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors placeholder:text-white/20"
+                                    />
+                                </div>
+
+                                {/* تفاصيل المشروع */}
+                                <div>
+                                    <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
+                                        project_details
+                                    </label>
+                                    <textarea
+                                        name="project_details"
+                                        rows={3}
+                                        placeholder="briefly_describe_your_project..."
+                                        className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors resize-none placeholder:text-white/20"
+                                    />
+                                </div>
+
                                 <MagneticButton
                                     type="submit"
                                     variant="solid"
+                                    disabled={quickStatus === 'sending'}
                                     className="w-full mt-2"
                                 >
-                                    initialize_request →
+                                    {quickStatus === 'sending' ? 'transmitting...' : `${t('send')} →`}
                                 </MagneticButton>
+
+                                {statusText[quickStatus as keyof typeof statusText] && (
+                                    <p
+                                        className={`font-mono text-[11px] text-center ${
+                                            quickStatus === 'success' ? 'text-primary' : 'text-red-400'
+                                        }`}
+                                    >
+                                        {statusText[quickStatus as keyof typeof statusText]}
+                                    </p>
+                                )}
                             </form>
                         </div>
 
@@ -124,13 +271,15 @@ export default function Contact() {
                                 {t('generalContactDesc', 'عايز تسأل أو تكلمني في أي حاجة؟')}
                             </p>
 
-                            <form className="space-y-4" onSubmit={handleSubmit}>
+                            <form className="space-y-4" onSubmit={handleGeneralSubmit}>
                                 <div>
                                     <label className="block font-mono text-[10px] text-white/40 uppercase tracking-wider mb-2">
                                         identifier
                                     </label>
                                     <input
+                                        name="name"
                                         type="text"
+                                        required
                                         placeholder="your_name"
                                         className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors placeholder:text-white/20"
                                     />
@@ -140,7 +289,9 @@ export default function Contact() {
                                         email
                                     </label>
                                     <input
+                                        name="email"
                                         type="email"
+                                        required
                                         placeholder="you@domain.com"
                                         className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors placeholder:text-white/20"
                                     />
@@ -150,6 +301,8 @@ export default function Contact() {
                                         message
                                     </label>
                                     <textarea
+                                        name="message"
+                                        required
                                         rows={3}
                                         placeholder="type_your_message..."
                                         className="w-full bg-white/3 border border-white/10 focus:border-primary px-4 py-3 text-white text-sm font-mono outline-none transition-colors resize-none placeholder:text-white/20"
@@ -158,10 +311,21 @@ export default function Contact() {
                                 <MagneticButton
                                     type="submit"
                                     variant="solid"
-                                    className="w-full mt-2" 
+                                    disabled={generalStatus === 'sending'}
+                                    className="w-full mt-2"
                                 >
-                                    send_transmission →
+                                    {generalStatus === 'sending' ? 'transmitting...' : 'send_transmission →'}
                                 </MagneticButton>
+
+                                {statusText[generalStatus as keyof typeof statusText] && (
+                                    <p
+                                        className={`font-mono text-[11px] text-center ${
+                                            generalStatus === 'success' ? 'text-primary' : 'text-red-400'
+                                        }`}
+                                    >
+                                        {statusText[generalStatus as keyof typeof statusText]}
+                                    </p>
+                                )}
                             </form>
                         </div>
                     </div>
@@ -171,7 +335,8 @@ export default function Contact() {
                         {[
                             { label: 'email', href: 'mailto:aldhb176@gmail.com' },
                             { label: 'github', href: 'https://github.com/M0staafaAhmed' },
-                            { label: 'linkedin', href: 'https://linkedin.com/in/your-profile' },
+                            { label: 'linkedin', href: 'https://linkedin.com/in/m0sstafaahmed' },
+                            { label: 'whatsapp', href: 'https://api.whatsapp.com/send/?phone=01229757587' },
                         ].map((link) => (
                             <a
                                 key={link.label}

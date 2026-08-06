@@ -22,3 +22,20 @@
     --color-neutral : #8b7171;
 
 }
+
+@layer utilities {
+  /* تخصيص السكرول بار للموقع كله */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme('colors.neutral.900');
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
+}
