@@ -15,6 +15,15 @@ export default function MobileNavbar() {
     const { t } = useTranslation();
     const activeSection = useScrollSpy(navItems.map((item) => item.id));
     const [open, setOpen] = useState(false)
+
+    const handleDownloadCv = () => {
+            const link = document.createElement("a");
+            link.href = "/Mustafa_Ahmed_CV_Frontend.pdf"
+            link.download = "Mustafa_Ahmed_CV_Frontent_react.js.pdf"
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
     return (
         <>
             <button className="md:hidden text-white cursor-pointer" onClick={() => setOpen(!open)} title='open mobile menu'>
@@ -58,6 +67,7 @@ export default function MobileNavbar() {
                         <div className="p-4 border-t border-primary/30 flex justify-center">
                             <MagneticButton 
                                 className='w-full py-2 px-4 rounded-xl uppercase font-bold'
+                                onClick={handleDownloadCv}
                             >
                                 {t('resume')}
                             </MagneticButton>
