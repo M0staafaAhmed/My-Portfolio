@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { AnimatePresence, motion } from 'motion/react';
+import { MagneticButton } from '../Animation/MagneticButton';
 
 const navItems = [
     { id: 'about' },
@@ -54,6 +55,13 @@ export default function MobileNavbar() {
                                 );
                             })}
                         </ul>
+                        <div className="p-4 border-t border-primary/30 flex justify-center">
+                            <MagneticButton 
+                                className='w-full py-2 px-4 rounded-xl uppercase font-bold'
+                            >
+                                {t('resume')}
+                            </MagneticButton>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
